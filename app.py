@@ -11,6 +11,7 @@ app=application
 # loading pickles
 scaler=pickle.load(open("Model/standardScalar.pkl", "rb"))
 model=pickle.load(open("Model/modelForPrediction.pkl", "rb"))
+# DecisionTreeModel=pickle.load(open("Model/DecisionTreeForPrediction.pkl", "rb"))
 
 #Rout to homepage
 @app.route("/")
@@ -34,6 +35,8 @@ def predict_datapoint():
 
         new_data=scaler.transform([[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]])
         predict=model.predict(new_data)
+        # new_data=[[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]]
+        # predict=DecisionTreeModel(new_data)
 
         if predict[0]==1:
             result = 'Diabetic'
